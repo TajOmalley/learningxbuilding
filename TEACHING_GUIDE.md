@@ -180,6 +180,123 @@
 - **Solution**: Make parent `position: relative;` so absolutely positioned children move with parent
 - **Transform Property**: `transform: translateY(7px);` moves element without affecting layout flow
 - **Transition Property**: `transition: 0.5s;` makes changes animate smoothly
+
+## Session 13: Commenting Code
+
+- **CSS Comments**: Use `/* comment */` to comment out CSS code
+  - Single line: `/* property: value; */`
+  - Multi-line: `/* line 1 \n line 2 */`
+- **HTML Comments**: Use `<!-- comment -->` to comment out HTML code
+  - Single line: `<!-- <element>content</element> -->`
+  - Multi-line: `<!-- line 1 \n line 2 -->`
+- **Keyboard Shortcut**: `Ctrl + /` (Windows) or `Cmd + /` (Mac) toggles comments on selected lines
+- **Why Comment**: Temporarily disable code, add notes, debug, keep old code for reference
+
+## Session 14: Adding Images
+
+- **HTML Image Tag**: `<img src="path" alt="description">`
+  - `src` attribute: Path to image file (required)
+  - `alt` attribute: Alternative text for accessibility (required)
+- **Image Organization**: Store images in `images/` folder, reference with `src="images/file.jpg"`
+- **Image Paths**:
+  - Same folder: `src="image.jpg"`
+  - Subfolder: `src="images/image.jpg"`
+  - URL: `src="https://example.com/image.jpg"`
+- **CSS Image Styling**:
+  - `width: 100%;` - Full container width
+  - `height: auto;` - Maintains aspect ratio
+  - `max-width: 100%;` - Responsive, won't overflow
+  - `object-fit: cover;` - Fills container, crops if needed
+  - `object-fit: contain;` - Fits entirely, may have empty space
+  - `border-radius: 10px;` - Rounded corners
+- **Image Formats**: `.jpg`, `.png`, `.gif`, `.svg`, `.webp`
+- **Best Practices**: Always include `alt` text, use `height: auto` with width, use `max-width: 100%` for responsiveness
+
+## Session 15: Resizing Images
+
+- **Resizing Methods**:
+  1. **Width + Auto Height** (Recommended): `width: 200px; height: auto;` - Maintains aspect ratio
+  2. **Fixed Width & Height**: `width: 200px; height: 150px;` - May distort if ratio doesn't match
+  3. **Max-Width**: `max-width: 300px; width: 100%;` - Responsive, won't exceed max
+  4. **Object-Fit**: `object-fit: cover;` or `contain;` - Controls how image fills fixed container
+  5. **Viewport Units**: `width: 20vw;` - Size relative to screen
+- **Object-Fit Values**:
+  - `cover` - Fills container, crops excess (no empty space)
+  - `contain` - Fits entirely, may have empty space
+  - `fill` - Stretches to fill (may distort)
+- **Best Practice**: Use `width` with `height: auto` to maintain proportions, add `max-width: 100%` to prevent overflow
+
+## Session 16: Centering Images Vertically
+
+- **Flexbox Method** (Recommended): Add `display: flex; align-items: center;` to parent div
+  - `align-items: center;` - Centers vertically
+  - `justify-content: center;` - Centers horizontally (optional)
+- **Absolute Positioning Method**: `position: absolute; top: 50%; transform: translateY(-50%);` on image
+- **Line-Height Method**: Works for inline elements, less reliable
+- **Best Practice**: Use Flexbox on parent container for most reliable vertical centering
+
+## Session 17: Containing Elements Within Parent
+
+- **Problem**: Using `position: relative` with percentage values positions relative to element itself, not parent
+- **Solution 1 - Flexbox** (Recommended): Use `justify-content: space-between;` on flex container to space items
+  - Add `padding: 0 2.5%;` to nav for side spacing
+  - Remove positioning from child elements, let flexbox handle spacing
+- **Solution 2 - Absolute Positioning**: Use `position: absolute` with `right: X%` or `left: X%` relative to positioned parent
+  - Parent needs `position: relative` to create positioning context
+  - Values are relative to parent, not element itself
+- **Solution 3 - Overflow Hidden**: `overflow: hidden;` on parent hides overflow but doesn't fix positioning
+- **Key Concept**: Percentage positioning values with `relative` are relative to the element, not the parent
+- **Pushing Elements to Right**: Use `margin-left: auto;` on element in flexbox to push it to the right
+- **Spacing Between Elements**: Use `margin-right: Xpx;` or `gap: Xpx;` on flex container to space items
+- **Flexbox Spacing**: `justify-content: space-between;` spaces items, `margin-left: auto;` pushes specific item to right
+
+## Session 18: Hover Effects on Multiple Elements
+
+- **Styling Multiple Elements**: Use comma-separated selectors: `.class1, .class2, .class3 { }`
+- **Hover Pseudo-class**: `:hover` applies styles when element is hovered
+- **Hover Effects**:
+  - `background-color: #c0c0c0;` - Darkens section
+  - `color: #ffffff;` - Brightens text
+  - `transform: translateY(-3px);` - Moves element up
+- **Smooth Transitions**: `transition: 0.3s;` makes changes animate smoothly
+- **Padding for Background**: Add `padding` to text elements so background has space to show
+- **Cursor Pointer**: `cursor: pointer;` shows hand cursor on hover
+- **Targeting Options**:
+  - Individual: `.profile:hover { }`
+  - Multiple: `.profile:hover, .passport:hover { }`
+  - All children: `.nav-links > div:hover { }`
+  - Shared class: `.nav-link:hover { }`
+- **Parent Selectors**: Use `:has()` pseudo-class to style parent based on child hover
+  - Syntax: `.parent:has(.child:hover) { }` - Styles parent when child is hovered
+  - Example: `.nav:has(.profile:hover) { background-color: #c0c0c0; }`
+- **Selective Hover Effects**: Change parent background on any child hover, but only change specific child's properties
+- **Browser Support**: `:has()` works in modern browsers (Chrome 105+, Firefox 121+, Safari 15.4+)
+
+## Session 19: Multi-Section Pages vs Single-Page Applications
+
+- **Two Approaches**:
+  1. **Multi-Page**: Separate HTML files for each section (traditional, simpler but duplicates code)
+  2. **Single-Page**: One HTML file, show/hide sections dynamically (modern, aligns with React/Next.js)
+- **Single-Page Approach**:
+  - Create separate content divs for each section
+  - Hide all by default: `display: none;`
+  - Show active section: `.active { display: block; }`
+  - Use JavaScript to add/remove `active` class on click
+- **Why Single-Page**: No page reloads, shared code, aligns with React/Next.js patterns, smoother UX
+- **JavaScript for Switching**: Add event listeners to nav links to show/hide sections
+- **Future with React/Next.js**: React uses components and routing, Next.js has file-based routing
+- **JavaScript Setup**:
+  - Create `script.js` file
+  - Add `<script src="script.js"></script>` before `</body>` tag
+  - Use `DOMContentLoaded` event to wait for page load
+- **JavaScript Concepts**:
+  - `document.querySelector('.class')` - Find element by class
+  - `document.getElementById('id')` - Find element by ID
+  - `addEventListener('click', function)` - Listen for clicks
+  - `classList.add('class')` - Add CSS class
+  - `classList.remove('class')` - Remove CSS class
+  - Functions - Organize code into reusable pieces
+- **Default Section**: Add `active` class to one section in HTML to show it on page load
 - **Changing Size**: Modify the number values in CSS properties
 - **Viewing Changes**: Save CSS file and refresh browser (if using localhost)
 
