@@ -297,6 +297,79 @@
   - `classList.remove('class')` - Remove CSS class
   - Functions - Organize code into reusable pieces
 - **Default Section**: Add `active` class to one section in HTML to show it on page load
+- **Hero/Default Content**: Create a hero section that shows on page load, gets hidden when nav links are clicked
+- **Function Parameters**: Functions can accept parameters: `function showSection(section) { }` - section is the parameter
+- **Common Bugs**: 
+  - Forgetting to pass parameter to function
+  - Using undefined variable instead of parameter
+  - Wrong variable name in event listener (e.g., showing wrong content)
+
+## Session 20: Styling Individual Sections
+
+- **ID vs Class for Styling**:
+  - IDs: `#map-content { }` - Unique, use for JavaScript selection
+  - Classes: `.map-content { }` - Reusable, better for styling
+- **Best Practice**: Use both - ID for JavaScript, class for CSS
+- **Adding Classes**: Add class attribute to HTML: `class="content-section map-content"`
+- **Multiple Classes**: Elements can have multiple classes: `class="content-section map-content active"`
+- **Styling Pattern**: Create specific class for each section (`.map-content`, `.profile-content`, etc.)
+- **Organization**: Style each section separately in CSS for better maintainability
+- **Container vs Content Structure**:
+  - Container (`.editor`) handles: width, height, margin, padding, background, positioning
+  - Content sections handle: layout (flex-direction, gap), internal styling
+  - Content sections should fill container: `width: 100%; height: 100%;`
+- **Common Mistake**: Adding positioning (margin, width, height) to content sections that are inside a positioned container
+- **Display Properties**: 
+  - Container can be `display: flex` for layout control
+  - Content sections use `display: none` (hidden) or `display: flex/block` (active)
+- **Making Elements Clickable**: Add `cursor: pointer;` to indicate clickable elements (like logo links)
+- **Hero/Default Content**: Hero content shows on page load, disappears when other sections are selected
+- **Content Section Structure**: 
+  - Container (`.editor`) provides visual styling (background, shadow, border)
+  - Content sections (`.hero-content`, `.map-content`) fill container and provide layout
+  - Only one section visible at a time via `active` class
+- **Testing Navigation**: Click nav links to verify sections switch, click logo to return to hero
+- **Conditional Container Styling**: If container (`.editor`) should only show styling when specific content is active:
+  - Use JavaScript to add/remove class on container: `editor.classList.add('show-hero')`
+  - Or use CSS `:has()` selector: `.editor:has(.hero-content.active) { }`
+- **Container Background Issue**: If container always shows background even when content is hidden, make background conditional
+- **JavaScript Pattern**: Check which section is active and conditionally style container based on active section
+
+## Session 21: Vertical Layout with Flexbox
+
+- **Vertical Stacking**: Use `flex-direction: column;` to stack flex items vertically
+- **Default Flex Direction**: `flex-direction: row;` (horizontal) is default
+- **Vertical Spacing**: `gap: 40px;` works with `flex-direction: column` to space items vertically
+- **Flexbox Direction Options**:
+  - `row` - Horizontal (default)
+  - `column` - Vertical (top to bottom)
+  - `row-reverse` - Horizontal reversed
+  - `column-reverse` - Vertical reversed
+- **Spacing Methods**:
+  - `gap: 40px;` - Consistent spacing between all items (recommended)
+  - `margin-bottom: 20px;` - Individual spacing on each item
+- **Nested Flex Containers**: Parent can be `flex-direction: row`, children can be `flex-direction: column`
+- **Evenly Distributing Items**:
+  - `flex: 1;` on children - Makes items take equal space
+  - `gap: 30px;` on parent - Consistent spacing between items
+  - `justify-content: space-between;` - Space between items, none on edges
+  - `justify-content: space-around;` - Space around each item
+  - `justify-content: space-evenly;` - Equal space everywhere
+- **Flex Property**: `flex: 1;` makes item flexible and take equal share of available space
+- **Removing Fixed Widths**: When using `flex: 1;`, remove fixed `width` properties to allow flex to work
+- **Gap vs Justify-Content**: `gap` adds consistent spacing, `justify-content` distributes items with different spacing patterns
+- **CSS Specificity**: More specific selectors override general ones
+- **Common Issue**: General selector (`.content-section.active`) applies to all sections
+  - Solution: Use specific selectors (`.map-content.active`, `.hero-content.active`)
+- **Default vs Specific**: Set default in general selector, override with specific selectors
+- **Flex Display Inheritance**: If parent has `display: flex`, children become flex items
+- **Empty Flex Containers**: Empty flex containers still create layout space
+- **CSS Specificity Issue**: More specific selectors override less specific ones
+  - `.map-content { display: flex; }` overrides `.content-section { display: none; }`
+  - Solution: Make display conditional on `.active` class: `.map-content.active { display: flex; }`
+- **Missing Active Rule**: If `.content-section.active` rule is missing, sections won't show when active
+- **Display Property Override**: Direct `display` property on class overrides parent's `display: none`
+- **Best Practice**: Always make display conditional: `.section.active { display: ...; }` instead of `.section { display: ...; }`
 - **Changing Size**: Modify the number values in CSS properties
 - **Viewing Changes**: Save CSS file and refresh browser (if using localhost)
 

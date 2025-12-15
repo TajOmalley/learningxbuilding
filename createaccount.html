@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang = 'en'>
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width=device-width, initial scale= 1.0">
+        <title>
+            Create Account - naavis
+        </title>
+
+        <link rel="icon" type="image/png" href="images/naavis_logo_small.png">
+        <link rel="stylesheet" href="style.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="signin-container">
+            <div class="signin-box">
+                <img src="images/naavis_logo.png" alt="naavis logo" class="signin-logo">
+                
+                <form class="signin-form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter password">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password">
+                            <span class="password-error-icon" id="password-error-icon">✕</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="signin-button">CREATE ACCOUNT</button>
+                </form>
+                <a href="signin.html" class="back-button">Back</a>
+            </div>
+        </div>
+        <script src="createaccount.js"></script>
+    </body>
+</html>
